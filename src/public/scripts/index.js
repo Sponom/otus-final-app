@@ -1,23 +1,21 @@
 (function(){
-  const form = document.querySelector('.url-form');
-  const clearBtn = document.querySelector('.clear-url');
+  const urlForm = document.querySelector('.url-form');
+  const urlInput = urlForm.elements.url;
+  const resetBtn = document.querySelector('.clear-url');
   const resultContainer = document.querySelector('.result-container')
   const resultElement = resultContainer.querySelector('.result-url')
-  resultContainer.hidden = true;
-  form.addEventListener('submit', submitForm);
 
-  clearBtn.addEventListener('click', clearUrl);
+  urlForm.addEventListener('submit', submitForm);
+  resetBtn.addEventListener('click', clearUrl);
 
   async function submitForm (event) {
     event.preventDefault();
 
-    resultContainer.hidden = true;
-    const currentForm = event.currentTarget;
-    const urlInput = currentForm.elements.url;
-    const errorTextElement = currentForm.querySelector('.invalid-feedback');
-    const urlVal = urlInput.value;
-
+    resultContainer.classList.add('d-none');
     urlInput.classList.remove('is-invalid');
+  
+    const errorTextElement = urlForm.querySelector('.invalid-feedback');
+    const urlVal = urlInput.value;
 
     const { alias, error, message } = await fetch('/shorten', {
       method: 'POST',
@@ -36,15 +34,15 @@
     if (alias) {
       resultElement.textContent = `${window.location.origin}/${alias}`;
       resultElement.setAttribute('href', `/${alias}`);
-      resultContainer.hidden = false;
-      form.hidden = true;
+      resultContainer.classList.remove('d-none');
+      urlForm.classList.add('d-none');
     }
 
   }
+  
   function clearUrl () {
-    form.hidden = false;
-    const urlInput = form.elements.url;
+    resultContainer.classList.add('d-none');
+    urlForm.classList.remove('d-none');
     urlInput.value = '';
-    resultContainer.hidden = true
   }
 })();
