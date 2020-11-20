@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>URL shortener app</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-sm">
+        <h1>URL Shortener App</h1>
+        <form action="/short" method="POST" id="url-form" class="url-form">
+          <div class="form-group">
+            <label for="basic-url">Enter URL to shorten</label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">https://example.com/</span>
+              </div>
+              <input type="text" class="form-control" id="url" aria-describedby="basic-addon3" required>
+              <div class="invalid-feedback">
+                123
+              </div>
+            </div>
+
+          </div>
+          <button type="submit" class="btn btn-primary">Shorten URL</button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <div class="jumbotron jumbotron-fluid result-container">
+          <div class="container">
+            <h2 class="display-4">Congratulations!</h2>
+            <p class="lead">This is your shortened URL: <a href="#" target="_blank" class="result-url"></a></span></p>
+            <button type="button" class="btn btn-secondary clear-url">Shorten another one</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="scripts/index.js"></script>
+</body>
+
+</html>
